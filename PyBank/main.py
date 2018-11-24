@@ -23,7 +23,7 @@ lst_pl = []
 header =[]
 avg_delta=[]
 sorted_deltas_pl=[]
-final_header =["Total Months","Total","Average  Change","Greatest Increase in Profits","Greatest DEcrease in Profits"]
+final_header =["Total Months","Total","Average  Change","Greatest Increase in Profits","Greatest Decrease in Profits"]
 final_value=[]
 dict_results={}
 grt_inc_month=""
@@ -75,8 +75,20 @@ print("Greatest Decrease in Profits: " +grt_dec_month+ " (" + str('${:,.2f}'.for
 final_value.append(tot_mths)
 final_value.append('${:,.2f}'.format(grand_tot_pl,2))
 final_value.append('${:,.2f}'.format(avg_chng,2))
-final_value.append('${:,.2f}'.format(grt_inc_pr_val,0))
-final_value.append('${:,.2f}'.format(grt_dec_pr_val,0))
+final_value.append(grt_inc_month + " "+'${:,.2f}'.format(grt_inc_pr_val,0))
+final_value.append(grt_dec_month + " "+ '${:,.2f}'.format(grt_dec_pr_val,0))
 print("==================================================")
-print(final_header)
-print(final_value)
+#print(final_header)
+#print(final_value)
+result=zip(final_header,final_value)
+#print(result)
+
+output_file = os.path.join("Financial_Analysis.csv")
+
+with open(output_file, "w", newline="") as datafile:
+    writer = csv.writer(datafile)
+    # Write the header row
+    writer.writerow(["Financial Analysis"])
+    writer.writerow(["-------------------------------------------------------"])
+
+    writer.writerows(result)
