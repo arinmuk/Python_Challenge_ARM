@@ -1,0 +1,12 @@
+==> 2018-11-24 09:42:18 <==
+# cmd: C:\ProgramData\Anaconda3\Scripts\conda create -p E:\GoogleDrv_A\Python_Challenge_ARM\PyBank\env -y python=3.6
+# conda version: 4.5.11
++defaults::certifi-2018.10.15-py36_0
++defaults::pip-18.1-py36_0
++defaults::python-3.6.7-h33f27b4_1
++defaults::setuptools-40.6.2-py36_0
++defaults::vc-14.1-h0510ff6_4
++defaults::vs2015_runtime-14.15.26706-h3a45250_0
++defaults::wheel-0.32.3-py36_0
++defaults::wincertstore-0.2-py36h7fe50ca_0
+# update specs: ['python=3.6']
