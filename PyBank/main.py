@@ -50,7 +50,7 @@ for indx in range(1,len(lst_pl)) :
     #print(avg_delta)
 
 sorted_deltas_pl=sorted(avg_delta,reverse=True)
-print(sorted_deltas_pl)
+#print(sorted_deltas_pl)
 grt_inc_pr_val = sorted_deltas_pl[0]
 grt_dec_pr_val = sorted_deltas_pl[-1]
 grt_inc_pr_indx = avg_delta.index(grt_inc_pr_val)
