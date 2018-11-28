@@ -15,10 +15,10 @@ sorted_candidate_res={}
 totalvotes=0
 winnerlist=[]
 voter_csv = os.path.join(".","election_data.csv")
-
+print(voter_csv)
 with open(voter_csv, newline="") as csvfile:
     csvreader = csv.DictReader(csvfile, delimiter=",")
-
+    #header=next(csvreader)
     for row in csvreader:
         for key,value in row.items():
            # print(key,value)
@@ -50,9 +50,11 @@ print("Li : " + str('{:,.2%}'.format(li/totalvotes)+" " +str(li)))
 print("O'Tooley : " +  str('{:,.2%}'.format(tooley/totalvotes)+" " +  str(tooley)))
 #print('Total Votes : ' + str(totalvotes))
 print("---------------------------------------------------")
-
+#print("==================================================")
+#print(candidate_res)
 sorted_candidate_res=sorted(candidate_res.items(),key=lambda cv:(cv[1],cv[0]),reverse=True)
-
+#print(sorted_candidate_res)
+#print(sorted_candidate_res[-1])
 winnerlist=sorted_candidate_res[0]
 
 print("Winner: " + winnerlist[0])
@@ -68,7 +70,8 @@ percentage_votes.append(winnerlist[0])
 final_votes.append("")
 
 result=zip(final_header,percentage_votes,final_votes)
-
+#print(result)
+# Set variable for output file
 i=0
 output_file = os.path.join("Election_Analysis.csv")
 #  Open the output file
@@ -77,12 +80,17 @@ with open(output_file, "w", newline="") as datafile:
     # Write the header row
     writer.writerow(["Election Analysis"])
     writer.writerow(["-------------------------------------------------------"])
-
+    # Write in zipped rows
+    #writer.writerows(result)
     for value in final_header:
-        writer.writerow([value + " " + percentage_votes[i]+ " "+str(final_votes[i])])
+        writer.writerow([value + " "+ percentage_votes[i]+ " "+str(final_votes[i])])
         if value=="Total Votes : ":
             writer.writerow(["-------------------------------------------------------"])
         elif value=="O'Tooley : ":
             writer.writerow(["-------------------------------------------------------"])
+        ##for value in final_value:
+        ##  strlinetoprint=final_header[i]+str(value)
+
+        ##writer.writerow(strlinetoprint)
         i+=1
     writer.writerow(["-------------------------------------------------------"])

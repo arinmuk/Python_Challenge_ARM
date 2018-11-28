@@ -45,10 +45,12 @@ with open(budget_csv, newline="") as csvfile:
 
 for indx in range(1,len(lst_pl)) :
     avg_delta.append(float(lst_pl[indx])-float(lst_pl[indx-1]))
-
+    #print(float(lst_pl[indx]))
+    #print(float(lst_pl[indx-1]))
+    #print(avg_delta)
 
 sorted_deltas_pl=sorted(avg_delta,reverse=True)
-
+#print(sorted_deltas_pl)
 grt_inc_pr_val = sorted_deltas_pl[0]
 grt_dec_pr_val = sorted_deltas_pl[-1]
 grt_inc_pr_indx = avg_delta.index(grt_inc_pr_val)
@@ -60,7 +62,9 @@ grt_dec_month=lst_month[grt_dec_pr_indx+1]
 tot_mths = len(lst_month)
 grand_tot_pl=sum(lst_pl)
 avg_chng=average(avg_delta)
-
+#print(header)
+#print(lst_month)
+#print(lst_pl)
 print("Financial Analysis")
 print("---------------------------------------------------")
 print("Total Months: " + str(tot_mths))
@@ -74,18 +78,24 @@ final_value.append('${:.2f}'.format(avg_chng,2))
 final_value.append(grt_inc_month + " "+'${:.2f}'.format(grt_inc_pr_val,0))
 final_value.append(grt_dec_month + " "+ '${:.2f}'.format(grt_dec_pr_val,0))
 print("==================================================")
-
+#print(final_header)
+#print(final_value)
 result=zip(final_header,final_value)
-
+print(result)
+print( final_header)
 output_file = os.path.join("Financial_Analysis.csv")
 i=0
 
 with open(output_file, "w", newline="") as datafile:
     writer = csv.writer(datafile)
-
+    # Write the header row
     writer.writerow(["Financial Analysis"])
     writer.writerow(["-------------------------------------------------------"])
     for value in final_value:
         writer.writerow([final_header[i]+ " "+ str(value)])
+    ##for value in final_value:
+      ##  strlinetoprint=final_header[i]+str(value)
 
+        ##writer.writerow(strlinetoprint)
         i+=1
+   ### writer.writerows(result)
