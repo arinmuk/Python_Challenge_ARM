@@ -1,6 +1,6 @@
 import os
 import csv
-final_header =["Total Votes","Khan","Correy","Li","O'Tooley","Winner"]
+final_header =["Total Votes : ","Khan : ","Correy : ","Li : ","O'Tooley : ","Winner : "]
 percentage_votes=[]
 final_votes=[]
 value=0
@@ -14,7 +14,8 @@ voters=[]
 sorted_candidate_res={}
 totalvotes=0
 winnerlist=[]
-voter_csv = os.path.join("election_data.csv")
+voter_csv = os.path.join(".","election_data.csv")
+print(voter_csv)
 with open(voter_csv, newline="") as csvfile:
     csvreader = csv.DictReader(csvfile, delimiter=",")
     #header=next(csvreader)
@@ -71,6 +72,7 @@ final_votes.append("")
 result=zip(final_header,percentage_votes,final_votes)
 #print(result)
 # Set variable for output file
+i=0
 output_file = os.path.join("Election_Analysis.csv")
 #  Open the output file
 with open(output_file, "w", newline="") as datafile:
@@ -79,4 +81,16 @@ with open(output_file, "w", newline="") as datafile:
     writer.writerow(["Election Analysis"])
     writer.writerow(["-------------------------------------------------------"])
     # Write in zipped rows
-    writer.writerows(result)
+    #writer.writerows(result)
+    for value in final_header:
+        writer.writerow([value + " "+ percentage_votes[i]+ " "+str(final_votes[i])])
+        if value=="Total Votes : ":
+            writer.writerow(["-------------------------------------------------------"])
+        elif value=="O'Tooley : ":
+            writer.writerow(["-------------------------------------------------------"])
+        ##for value in final_value:
+        ##  strlinetoprint=final_header[i]+str(value)
+
+        ##writer.writerow(strlinetoprint)
+        i+=1
+    writer.writerow(["-------------------------------------------------------"])
