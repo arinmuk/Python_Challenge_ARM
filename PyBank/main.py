@@ -23,7 +23,7 @@ lst_pl = []
 header =[]
 avg_delta=[]
 sorted_deltas_pl=[]
-final_header =["Total Months","Total","Average  Change","Greatest Increase in Profits","Greatest Decrease in Profits"]
+final_header =["Total Months :","Total :","Average Change :","Greatest Increase in Profits :","Greatest Decrease in Profits :"]
 final_value=[]
 dict_results={}
 grt_inc_month=""
@@ -73,22 +73,29 @@ print("Average Change: "+ str('${:,.2f}'.format(avg_chng,2)))
 print("Greatest Increase in Profits: " +grt_inc_month+ " (" + str('${:,.2f}'.format(grt_inc_pr_val,0))+")")
 print("Greatest Decrease in Profits: " +grt_dec_month+ " (" + str('${:,.2f}'.format(grt_dec_pr_val,0))+")" )
 final_value.append(tot_mths)
-final_value.append('${:,.2f}'.format(grand_tot_pl,2))
-final_value.append('${:,.2f}'.format(avg_chng,2))
-final_value.append(grt_inc_month + " "+'${:,.2f}'.format(grt_inc_pr_val,0))
-final_value.append(grt_dec_month + " "+ '${:,.2f}'.format(grt_dec_pr_val,0))
+final_value.append('${:.2f}'.format(grand_tot_pl,2))
+final_value.append('${:.2f}'.format(avg_chng,2))
+final_value.append(grt_inc_month + " "+'${:.2f}'.format(grt_inc_pr_val,0))
+final_value.append(grt_dec_month + " "+ '${:.2f}'.format(grt_dec_pr_val,0))
 print("==================================================")
 #print(final_header)
 #print(final_value)
 result=zip(final_header,final_value)
-#print(result)
-
+print(result)
+print( final_header)
 output_file = os.path.join("Financial_Analysis.csv")
+i=0
 
 with open(output_file, "w", newline="") as datafile:
     writer = csv.writer(datafile)
     # Write the header row
     writer.writerow(["Financial Analysis"])
     writer.writerow(["-------------------------------------------------------"])
+    for value in final_value:
+        writer.writerow([final_header[i]+ " "+ str(value)])
+    ##for value in final_value:
+      ##  strlinetoprint=final_header[i]+str(value)
 
-    writer.writerows(result)
+        ##writer.writerow(strlinetoprint)
+        i+=1
+   ### writer.writerows(result)
